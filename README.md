@@ -6,6 +6,15 @@ a vscode extension to upload images in markdown to the image server and replace 
 
 ![alt text](images/preview.gif)
 
+## build
+
+```
+npm install
+
+npm run build
+
+```
+
 ## config
 
 ![alt text](images/config.png)

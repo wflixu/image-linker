@@ -1,11 +1,12 @@
 {
   "name": "image-linker",
   "displayName": "image-linker",
-  "description": "updload image to image bed",
-  "version": "0.1.1",
+  "description": "updload images in markdown  to image hosting service",
+  "version": "0.1.2",
   "icon": "images/logo.png",
   "publisher": "luke",
   "main": "./out/extension.js",
+  "packageManager": "npm@10.8.2",
   "engines": {
     "vscode": "^1.92.0"
   },
@@ -27,7 +28,7 @@
     ],
     "configuration": {
       "type": "object",
-      "title": "Image Uploader Configuration",
+      "title": "Image Linker",
       "properties": {
         "imageUploader.uploadUrl": {
           "type": "string",
@@ -43,7 +44,7 @@
         },
         "imageUploader.apiToken": {
           "type": "string",
-          "default": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoibHgiLCJpZCI6MjIsImlhdCI6MTcyNTA3MzQ1OCwiZXhwIjoxNzI1MjQ2MjU4fQ.0oWywEBYWH6qmzUI8ZJgzumStrYX9OxlCCk2LiiZd94",
+          "default": "",
           "description": "The API token used for authenticating with the image hosting service.",
           "scope": "application"
         }
@@ -60,12 +61,10 @@
     }
   },
   "scripts": {
-    "vscode:prepublish": "pnpm run compile",
     "compile": "tsc -p ./",
-    "build": "pnpm run compile && pnpm run packer",
     "packer": "vsce package -o  out/image-linker-$npm_package_version.vsix",
+    "build": "npm run compile && npm run packer",
     "watch": "tsc -watch -p ./",
-    "pretest": "pnpm run compile && pnpm run lint",
     "lint": "eslint src --ext ts",
     "test": "vscode-test"
   },
