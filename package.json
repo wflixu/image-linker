@@ -1,0 +1,86 @@
+{
+  "name": "image-linker",
+  "displayName": "image-linker",
+  "description": "updload image to image bed",
+  "version": "0.0.1",
+  "icon": "images/vue-logo.png",
+  "publisher": "luke",
+  "main": "./out/extension.js",
+  "engines": {
+    "vscode": "^1.92.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [],
+  "contributes": {
+    "commands": [
+      {
+        "command": "image-linker.updloadImage",
+        "title": "Upload Image"
+      }
+    ],
+    "configuration": {
+      "type": "object",
+      "title": "Image Uploader Configuration",
+      "properties": {
+        "imageUploader.uploadUrl": {
+          "type": "string",
+          "default": "https://api.wflixu.cn/chunk/upload",
+          "description": "The URL of the image hosting service's upload endpoint.",
+          "scope": "application"
+        },
+        "imageUploader.imageShowBaseUrl": {
+          "type": "string",
+          "default": "https://api.wflixu.cn/chunk/show?id=",
+          "description": "The URL of the image show url base",
+          "scope": "application"
+        },
+        "imageUploader.apiToken": {
+          "type": "string",
+          "default": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoibHgiLCJpZCI6MjIsImlhdCI6MTcyNTA3MzQ1OCwiZXhwIjoxNzI1MjQ2MjU4fQ.0oWywEBYWH6qmzUI8ZJgzumStrYX9OxlCCk2LiiZd94",
+          "description": "The API token used for authenticating with the image hosting service.",
+          "scope": "application"
+        }
+      }
+    },
+    "menus": {
+      "editor/context": [
+        {
+          "command": "image-linker.updloadImage",
+          "when": "resourceExtname == .md",
+          "group": "navigation"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "pnpm run compile",
+    "compile": "tsc -p ./",
+    "build": "pnpm run compile && pnpm run packer",
+    "packer": "vsce package -o  image-linker-0.1.0.vsix",
+    "watch": "tsc -watch -p ./",
+    "pretest": "pnpm run compile && pnpm run lint",
+    "lint": "eslint src --ext ts",
+    "test": "vscode-test"
+  },
+  "vsce": {
+    "baseImagesUrl": "https://my.custom/base/images/url",
+    "dependencies": true,
+    "yarn": false
+  },
+  "devDependencies": {
+    "@types/mocha": "^10.0.7",
+    "@types/node": "20.x",
+    "@types/vscode": "^1.92.0",
+    "@typescript-eslint/eslint-plugin": "^7.14.1",
+    "@typescript-eslint/parser": "^7.11.0",
+    "@vscode/test-cli": "^0.0.9",
+    "@vscode/test-electron": "^2.4.0",
+    "@vscode/vsce": "^2.32.0",
+    "eslint": "^8.57.0",
+    "typescript": "^5.4.5"
+  },
+  "dependencies": {
+  }
+}
