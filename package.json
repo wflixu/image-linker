@@ -2,13 +2,18 @@
   "name": "image-linker",
   "displayName": "image-linker",
   "description": "updload image to image bed",
-  "version": "0.0.1",
-  "icon": "images/vue-logo.png",
+  "version": "0.1.1",
+  "icon": "images/logo.png",
   "publisher": "luke",
   "main": "./out/extension.js",
   "engines": {
     "vscode": "^1.92.0"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-username/your-repository.git"
+  },
+  "license": "MIT",
   "categories": [
     "Other"
   ],
@@ -58,7 +63,7 @@
     "vscode:prepublish": "pnpm run compile",
     "compile": "tsc -p ./",
     "build": "pnpm run compile && pnpm run packer",
-    "packer": "vsce package -o  image-linker-0.1.0.vsix",
+    "packer": "vsce package -o  out/image-linker-$npm_package_version.vsix",
     "watch": "tsc -watch -p ./",
     "pretest": "pnpm run compile && pnpm run lint",
     "lint": "eslint src --ext ts",
@@ -77,7 +82,7 @@
     "@typescript-eslint/parser": "^7.11.0",
     "@vscode/test-cli": "^0.0.9",
     "@vscode/test-electron": "^2.4.0",
-    "@vscode/vsce": "^2.32.0",
+    "@vscode/vsce": "^3.0.0",
     "eslint": "^8.57.0",
     "typescript": "^5.4.5"
   },
