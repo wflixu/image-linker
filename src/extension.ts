@@ -5,6 +5,8 @@ import * as vscode from 'vscode';
 import * as fs from 'fs';
 import * as path from 'path';
 
+import mime from 'mime';
+
 
 // This method is called when your extension is activated
 // Your extension is activated the very first time the command is executed
@@ -77,8 +79,9 @@ async function uploadImageToHostingService(imagePath: string): Promise<string> {
 	const formData = new FormData();
 	const fileBuffer = fs.readFileSync(imagePath);
 	const fileName = path.basename(imagePath);
-	const file = new File([fileBuffer], fileName); // 创建一个 File 对象
-	formData.append('file', file);
+
+	const file = new File([fileBuffer], fileName, { type: mime.getType(path.extname(fileName)) }); // 创建一个 File 对象
+	formData.append('file', file, fileName);
 	// return ImageShowBaseURL;
 	// 在这里替换为你使用的图床服务的上传逻辑
 	const response = await fetch(uploadUrl, {

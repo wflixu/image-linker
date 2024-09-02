@@ -2,7 +2,7 @@
   "name": "image-linker",
   "displayName": "image-linker",
   "description": "updload images in markdown  to image hosting service",
-  "version": "0.1.2",
+  "version": "0.1.4",
   "icon": "images/logo.png",
   "publisher": "luke",
   "main": "./out/extension.js",
@@ -86,5 +86,6 @@
     "typescript": "^5.4.5"
   },
   "dependencies": {
+    "mime": "^3.0.0"
   }
 }
